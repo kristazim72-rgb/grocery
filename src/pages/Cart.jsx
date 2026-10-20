@@ -25,7 +25,7 @@ export default function Cart({ cart, onUpdateQuantity, onRemoveItem }) {
               <img src={item.image} alt={item.title} />
               <div className="cart-item-details">
                 <h4 title={item.title}>{item.title}</h4>
-                <div className="cart-item-price">\${item.price.toFixed(2)}</div>
+                <div className="cart-item-price">${item.price.toFixed(2)}</div>
               </div>
               
               <div className="cart-quantity-controls">

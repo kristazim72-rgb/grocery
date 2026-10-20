@@ -57,7 +57,6 @@ export default function Shop({ onAddToCart }) {
   return (
     <div className="shop-page container">
       <div className="shop-header">
-        <span className="sub-heading">FRESH FROM OUR API</span>
         <h2>Our <span>Products</span></h2>
       </div>
 
