@@ -105,3 +105,132 @@
   color: var(--text-secondary);
   letter-spacing: 0.5px;
 }
+
+.shop-page {
+  padding: 30px 16px;
+}
+
+.shop-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sub-heading {
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.shop-header h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-top: 6px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .shop-page {
+    padding: 40px 20px;
+  }
+  .shop-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Category Filter Tabs */
+.category-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.filter-pill {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .filter-pill {
+    padding: 10px 22px;
+    font-size: 0.95rem;
+  }
+  .category-filters {
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+}
+
+.filter-pill:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.filter-pill.active {
+  background-color: var(--text-primary);
+  color: var(--bg-card);
+  border-color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+/* Products Grid - Fluid auto-fill that adapts to any screen width */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+  }
+}
+
+/* Loading and Error States */
+.loading-spinner, .error-message {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 80px 20px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 16px;
+}
+
+.loading-cart {
+  font-size: 3rem;
+  animation: bounceCart 1.2s ease-in-out infinite;
+}
+
+@keyframes bounceCart {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.loading-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}

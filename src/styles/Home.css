@@ -52,3 +52,73 @@
 .hero-btn:hover {
   background-color: var(--cta-orange-hover);
 }
+
+.home-hero {
+  background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), 
+              url('../assets/home-bg.jpg') no-repeat center center/cover;
+  min-height: calc(100vh - 65px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-content {
+  max-width: 650px;
+  width: 100%;
+  padding: 40px 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+}
+
+.hero-content h1 {
+  font-size: 2.4rem; /* Scaled down for mobile */
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.hero-content h1 span {
+  color: var(--cta-orange);
+}
+
+.hero-content p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.hero-btn {
+  display: inline-block;
+  background-color: var(--cta-orange);
+  color: var(--bg-card);
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.hero-btn:hover {
+  background-color: var(--cta-orange-hover);
+}
+
+/* Tablet and Desktop scaling */
+@media (min-width: 768px) {
+  .hero-content {
+    padding: 50px 40px;
+  }
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+}
