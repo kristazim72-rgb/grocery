@@ -1,14 +1,14 @@
 .navbar {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem clamp(1.5rem, 4vw, 4rem);
+  padding: 1.25rem 3rem;
   background-color: #ffffff;
   border-bottom: 1px solid #f1f5f9;
   position: sticky;
   top: 0;
   z-index: 100;
+  width: 100%;
 }
 
 .nav-brand a {
@@ -24,8 +24,7 @@
 
 .nav-search-bar {
   flex-grow: 1;
-  min-width: 200px;
-  max-width: 500px;
+  max-width: 480px;
   margin: 0 2rem;
 }
 
@@ -81,24 +80,4 @@
   padding: 0.15rem 0.5rem;
   border-radius: 50px;
   font-weight: 700;
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
-    padding: 1rem 1.5rem;
-    gap: 1rem;
-  }
-
-  .nav-search-bar {
-    order: 3;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-  }
-
-  .nav-links {
-    gap: 1rem;
-  }
 }

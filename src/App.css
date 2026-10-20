@@ -12,23 +12,20 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-html, body {
-  width: 100%;
-  min-height: 100vh;
+body {
   background-color: #ffffff;
   color: var(--text-dark);
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-/* FULL-SCREEN SHELL WITH FLUID MAX/MIN BOUNDARIES */
 .app-container {
   width: 100%;
-  max-width: 1600px; /* Prevents extreme stretching on ultra-wide monitors */
-  min-width: 320px;  /* Prevents side overflow on small mobile screens */
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: 28px;
   background-color: #ffffff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
 }
 
 .main-content {

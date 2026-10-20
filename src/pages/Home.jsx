@@ -4,7 +4,7 @@ import '../styles/Home.css';
 
 const Home = () => {
   return (
-    <div className="home-page">
+  
       <div className="hero-section">
         <div className="hero-text-content">
           <span className="hero-tag">FRESH HARVEST DAILY</span>
@@ -22,7 +22,7 @@ const Home = () => {
           <p>On your first organic basket</p>
         </div>
       </div>
-    </div>
+  
   );
 };
 
