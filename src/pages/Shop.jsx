@@ -2,18 +2,19 @@ import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import '../styles/Shop.css';
 
-const CATEGORIES = ['All Product', 'electronics', 'jewelery', "men's clothing", "women's clothing"];
+const CATEGORIES = ['All Products', "men's clothing", "women's clothing", 'electronics', 'jewelery'];
 
 export default function Shop({ onAddToCart }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('All Product');
+  const [activeCategory, setActiveCategory] = useState('All Products');
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
+        // Fetching data from FakeStore API as required by TOP guidelines[cite: 3]
         const response = await fetch('https://fakestoreapi.com/products');
         if (!response.ok) {
           throw new Error('Failed to fetch shop products');
@@ -30,14 +31,17 @@ export default function Shop({ onAddToCart }) {
     fetchProducts();
   }, []);
 
-  const filteredProducts = activeCategory === 'All Product'
+  const filteredProducts = activeCategory === 'All Products'
     ? products
     : products.filter((p) => p.category === activeCategory);
 
   if (loading) {
     return (
       <div className="shop-page container">
-        <div className="loading-spinner">Loading fresh products...</div>
+        <div className="loading-container">
+          <div className="loading-cart">🛒</div>
+          <div className="loading-text">Loading fresh products...</div>
+        </div>
       </div>
     );
   }
@@ -53,6 +57,7 @@ export default function Shop({ onAddToCart }) {
   return (
     <div className="shop-page container">
       <div className="shop-header">
+        <span className="sub-heading">FRESH FROM OUR API</span>
         <h2>Our <span>Products</span></h2>
       </div>
 

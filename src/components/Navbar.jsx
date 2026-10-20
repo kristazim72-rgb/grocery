@@ -1,43 +1,43 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import '../styles/Navbar.css';
 
-const Navbar = ({ cartCount, searchQuery, onSearchChange }) => {
-  const navigate = useNavigate();
-
-  const handleInputChange = (e) => {
-    onSearchChange(e.target.value);
-    // Automatically navigate to shop if user starts searching from home
-    if (window.location.pathname !== '/shop' && e.target.value.trim() !== '') {
-      navigate('/shop');
-    }
-  };
-
+export default function Navbar({ cartCount }) {
   return (
-    <header className="navbar">
-      <div className="nav-brand">
-        <Link to="/">groceria<span className="dot">.</span></Link>
-      </div>
-      
-      {/* Live Active Search Bar */}
-      <div className="nav-search-bar">
-        <input 
-          type="text" 
-          placeholder="Search for grocery, vegetables, spices..." 
-          value={searchQuery}
-          onChange={handleInputChange}
-        />
-      </div>
-
-      <nav className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/shop">Shop</Link>
-        <Link to="/cart" className="cart-link-pill">
-          🛒 Cart <span className="cart-badge">{cartCount}</span>
+    <header className="navbar-header">
+      <div className="container nav-container">
+        <Link to="/" className="brand-logo">
+          {/* Professional SVG Shopping Bag / Cart Icon */}
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2.5" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            className="brand-icon"
+          >
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          ForlaCart
         </Link>
-      </nav>
+        <nav className="nav-links">
+          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Home
+          </NavLink>
+          <NavLink to="/shop" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Shop
+          </NavLink>
+          <NavLink to="/cart" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Cart
+            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+          </NavLink>
+        </nav>
+      </div>
     </header>
   );
-};
-
-export default Navbar;
+}

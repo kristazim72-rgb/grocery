@@ -1,66 +1,43 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Cart.css';
 
-const Cart = ({ cart, onUpdateQuantity }) => {
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+export default function Cart({ cart, onUpdateQuantity, onRemoveItem }) {
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   if (cart.length === 0) {
     return (
-      <div className="empty-cart-container">
-        <div className="empty-cart-card">
-          <span className="empty-cart-icon">🛒</span>
-          <h2>Your basket is empty</h2>
-          <p>Explore our fresh harvest collection and stock up your kitchen.</p>
-          <Link to="/shop" className="return-shop-btn">
-            Browse Catalogue
-          </Link>
-        </div>
+      <div className="empty-cart">
+        <h2>Your Cart is Empty</h2>
+        <p>Looks like you haven't added any items to your cart yet.</p>
+        <Link to="/shop" className="shop-now-btn">Start Shopping</Link>
       </div>
     );
   }
 
   return (
     <div className="cart-page">
-      <h2 className="cart-heading">Your Grocery Basket</h2>
-      <div className="cart-layout">
-        
-        {/* Cart Items List */}
-        <div className="cart-items-column">
+      <h2>Shopping Cart</h2>
+      
+      <div className="cart-content">
+        <div className="cart-items">
           {cart.map((item) => (
-            <div key={item.id} className="cart-item-card" style={{ backgroundColor: item.bg || '#ffffff' }}>
+            <div key={item.id} className="cart-item">
+              <img src={item.image} alt={item.title} />
+              <div className="cart-item-details">
+                <h4 title={item.title}>{item.title}</h4>
+                <div className="cart-item-price">\${item.price.toFixed(2)}</div>
+              </div>
               
-              <div className="cart-item-image-wrapper">
-                <img src={item.image} alt={item.title} className="cart-item-img" />
-              </div>
-
-              <div className="cart-item-info">
-                <h4>{item.title}</h4>
-                <p className="cart-item-price">${item.price.toFixed(2)} / item</p>
-              </div>
-
-              {/* Quantity Adjuster with Active + / - Handlers */}
-              <div className="cart-qty-adjuster">
-                <button 
-                  onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-                  aria-label="Decrease quantity"
-                >
-                  -
-                </button>
+              <div className="cart-quantity-controls">
+                <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}>-</button>
                 <span>{item.quantity}</span>
-                <button 
-                  onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                  aria-label="Increase quantity"
-                >
-                  +
-                </button>
+                <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}>+</button>
               </div>
-
-              {/* Instant Remove Item Button */}
+              
               <button 
-                className="cart-remove-btn" 
-                onClick={() => onUpdateQuantity(item.id, 0)}
-                title="Remove item"
+                className="remove-btn" 
+                onClick={() => onRemoveItem(item.id)}
+                aria-label={`Remove ${item.title} from cart`}
               >
                 ✕
               </button>
@@ -68,35 +45,28 @@ const Cart = ({ cart, onUpdateQuantity }) => {
           ))}
         </div>
 
-        {/* Order Summary */}
-        <div className="cart-summary-card">
+        <div className="cart-summary">
           <h3>Order Summary</h3>
-          
           <div className="summary-row">
-            <span>Subtotal</span>
-            <span className="summary-val">${subtotal.toFixed(2)}</span>
+            <span>Subtotal ({cart.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
+            <span>${totalPrice.toFixed(2)}</span>
           </div>
-
           <div className="summary-row">
-            <span>Delivery</span>
-            <span className="summary-val free-tag">Free</span>
+            <span>Shipping</span>
+            <span>Free</span>
           </div>
-
-          <div className="summary-divider"></div>
-
-          <div className="summary-row total-row">
+          <div className="summary-row total">
             <span>Total</span>
-            <span className="summary-val total-val">${subtotal.toFixed(2)}</span>
+            <span>${totalPrice.toFixed(2)}</span>
           </div>
-
-          <button className="checkout-btn" onClick={() => alert('Order submitted successfully!')}>
+          <button 
+            className="checkout-btn" 
+            onClick={() => alert(`Order placed for $${totalPrice.toFixed(2)}!`)}
+          >
             Proceed to Checkout
           </button>
         </div>
-
       </div>
     </div>
   );
-};
-
-export default Cart;
+}
